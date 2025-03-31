@@ -32,6 +32,10 @@ class Camera(nn.Module):
         trans: np.ndarray = np.array([0.0, 0.0, 0.0]),
         scale: float = 1.0,
         data_device: str = "cuda",
+<<<<<<< HEAD
+=======
+        bg_color=None,
+>>>>>>> dev
     ) -> None:
         super(Camera, self).__init__()
 
@@ -42,6 +46,10 @@ class Camera(nn.Module):
         self.FoVx = FoVx
         self.FoVy = FoVy
         self.image_name = image_name
+<<<<<<< HEAD
+=======
+        self.bg_color = bg_color if bg_color is not None else torch.zeros(3, dtype=torch.float32)
+>>>>>>> dev
 
         try:
             self.data_device = torch.device(data_device)
@@ -50,7 +58,12 @@ class Camera(nn.Module):
             print(f"[Warning] Custom device {data_device} failed, fallback to default cuda device")
             self.data_device = torch.device("cuda")
 
-        self.original_image = image.clamp(0.0, 1.0).to(self.data_device)
+        #self.original_image = image.clamp(0.0, 1.0).to(self.data_device)
+        image = image.detach()  
+        with torch.no_grad():
+            self.original_image = image.clamp(0.0, 1.0).to(self.data_device)
+
+
         self.image_width = self.original_image.shape[2]
         self.image_height = self.original_image.shape[1]
 

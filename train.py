@@ -179,6 +179,9 @@ def training(
         # irradiance_volumes_params = checkpoint["irradiance_volumes"]
 
         gaussians.restore(model_params, opt)
+        torch.cuda.empty_cache() 
+        #gaussians.load_ply_my(checkpoint_path) #
+        #gaussians.save_ply('mytest/duksu/point_cloud_train2.ply')
         # cubemap.load_state_dict(cubemap_params)
         # light_optimizer.load_state_dict(light_optimizer_params)
         print(f"Load checkpoint from {checkpoint_path}")
@@ -437,6 +440,7 @@ def training(
                     cubemap.clamp_(min=0.0)
 
             if iteration in checkpoint_iterations:
+                
                 print(f"\n[ITER {iteration}] Saving Checkpoint")
                 torch.save(
                     {
@@ -449,7 +453,10 @@ def training(
                     scene.model_path + "/chkpnt" + str(iteration) + ".pth",
                 )
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> dev
 def prepare_output_and_logger(args: GroupParams) -> Optional[SummaryWriter]:
     if not args.model_path:
         if os.getenv("OAR_JOB_ID"):

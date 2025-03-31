@@ -114,6 +114,9 @@ if __name__ == "__main__":
     dataset = model.extract(args)
     pipeline = pipeline.extract(args)
     gaussians = GaussianModel(4)
+    
+    #gaussians.load_ply_my(args.checkpoint) #
+
 
     checkpoint = torch.load(args.checkpoint)
     if isinstance(checkpoint, Tuple):
@@ -123,6 +126,8 @@ if __name__ == "__main__":
     else:
         raise TypeError
     gaussians.restore(model_params)
+    #gaussians.save_ply('mytest/droneking/point_cloud_baking.ply')
+
 
     # Set up rasterization configuration
     res = args.cubemap_res

@@ -349,6 +349,8 @@ def launch(
     gaussians = GaussianModel(dataset.sh_degree)
     scene = Scene(dataset, gaussians, shuffle=False)
 
+    #gaussians.load_ply_3dgs(checkpoint)
+
     checkpoint = torch.load(checkpoint)
     if isinstance(checkpoint, Tuple):
         model_params = checkpoint[0]
@@ -385,6 +387,8 @@ def launch(
 
     # set point light source
     light_position = views[start].camera_center
+    offset = torch.tensor([0, 0, 0], device=light_position.device) #
+    light_position = light_position + offset #
     light_intensity = torch.ones_like(light_position) * 100.0
 
     # get depth cubemap at light source
@@ -423,7 +427,7 @@ def launch(
     o3d.io.write_point_cloud(os.path.join(model_path, name, "depth_cubemap.ply"), pc)
     pc = o3d.geometry.PointCloud()
     pc.points = o3d.utility.Vector3dVector(light_position.reshape(1, 3).cpu().numpy())
-    o3d.io.write_point_cloud(os.path.join(model_path, name, "light.ply"), pc)
+    #o3d.io.write_point_cloud(os.path.join(model_path, name, "light.ply"), pc)
 
     # NOTE: get the reference view and only change its `world_view_transform` and `camera_center` according to c2w_inter
     ref_view = views[0]

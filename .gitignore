@@ -12,3 +12,14 @@ dataset
 dataset_local
 test
 *egg-info*
+datasets
+outputs
+please
+__MACOSX
+mytest
+submodules
+*.ply
+*.jpg
+*.png
+*.hdr
+*.bin

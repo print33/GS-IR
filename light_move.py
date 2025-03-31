@@ -354,6 +354,7 @@ def launch(
         raise TypeError
 
     gaussians.restore(model_params)
+    #gaussians.save_ply('mytest/point_cloud_light_move.ply')
 
     views = scene.getTrainCameras()
 
@@ -432,7 +433,7 @@ def launch(
     light_intensity = torch.ones([3]).cuda() * 100.0
     envmap_dirs = get_envmap_dirs()  # [H, W, 3]
     for idx, c2w_inter in enumerate(tqdm(c2ws_inter, desc="Rendering progress")):
-        idx = 120
+        #idx = 120
         c2w_inter = c2ws_inter[idx]
         c2w_inter = torch.from_numpy(c2w_inter).cuda().float()
         light_position = c2w_inter[:3, 3]
