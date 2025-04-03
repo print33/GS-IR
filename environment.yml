@@ -10,3 +10,6 @@ dependencies:
   - tqdm
   - imageio
   - lpips
+  - trimesh
+  - tensorboard
+  - open3d
