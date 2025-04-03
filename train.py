@@ -453,10 +453,6 @@ def training(
                     scene.model_path + "/chkpnt" + str(iteration) + ".pth",
                 )
 
-<<<<<<< HEAD
-
-=======
->>>>>>> dev
 def prepare_output_and_logger(args: GroupParams) -> Optional[SummaryWriter]:
     if not args.model_path:
         if os.getenv("OAR_JOB_ID"):
