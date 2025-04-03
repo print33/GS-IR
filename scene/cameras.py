@@ -32,10 +32,7 @@ class Camera(nn.Module):
         trans: np.ndarray = np.array([0.0, 0.0, 0.0]),
         scale: float = 1.0,
         data_device: str = "cuda",
-<<<<<<< HEAD
-=======
         bg_color=None,
->>>>>>> dev
     ) -> None:
         super(Camera, self).__init__()
 
@@ -46,10 +43,7 @@ class Camera(nn.Module):
         self.FoVx = FoVx
         self.FoVy = FoVy
         self.image_name = image_name
-<<<<<<< HEAD
-=======
         self.bg_color = bg_color if bg_color is not None else torch.zeros(3, dtype=torch.float32)
->>>>>>> dev
 
         try:
             self.data_device = torch.device(data_device)
