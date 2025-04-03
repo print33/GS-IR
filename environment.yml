@@ -1,4 +1,4 @@
-name: gsir_test
+name: gsir
 channels:
   - pytorch
   - conda-forge
