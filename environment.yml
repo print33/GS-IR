@@ -13,3 +13,4 @@ dependencies:
   - trimesh
   - tensorboard
   - open3d
+  - Ninja
