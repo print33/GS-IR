@@ -764,7 +764,7 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     args.test_iterations.append(args.iterations)
     args.save_iterations.append(args.iterations)
-    args.checkpoint_iterations.append(args.i00terations)
+    args.checkpoint_iterations.append(args.iterations)
 
     print("Optimizing " + args.model_path)
 
