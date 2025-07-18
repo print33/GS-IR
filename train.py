@@ -439,7 +439,7 @@ def training(
                     light_optimizer.zero_grad(set_to_none=True)
                     cubemap.clamp_(min=0.0)
 
-            if iteration in checkpoint_iterations:
+            if iteration in checkpoint_iterations or iteration == opt.iterations:
                 
                 print(f"\n[ITER {iteration}] Saving Checkpoint")
                 torch.save(
@@ -452,6 +452,7 @@ def training(
                     },
                     scene.model_path + "/chkpnt" + str(iteration) + ".pth",
                 )
+                gaussians.save_ply(scene.model_path + f"/point_cloud_{iteration}.ply")
 
 def prepare_output_and_logger(args: GroupParams) -> Optional[SummaryWriter]:
     if not args.model_path:
@@ -763,7 +764,7 @@ if __name__ == "__main__":
     args = parser.parse_args(sys.argv[1:])
     args.test_iterations.append(args.iterations)
     args.save_iterations.append(args.iterations)
-    args.checkpoint_iterations.append(args.iterations)
+    args.checkpoint_iterations.append(args.i00terations)
 
     print("Optimizing " + args.model_path)
 
